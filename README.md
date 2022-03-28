@@ -1,2 +1,2 @@
 # Flappy Bird
-remake with Python
+remake with pygame
