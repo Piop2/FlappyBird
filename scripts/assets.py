@@ -9,14 +9,16 @@ def load_image(path):
     return img
 
 
-class Images:
+class Image:
     def __init__(self):
-        self.background = load_image("assets/images/background.png")
-        self.ground = load_image("assets/images/ground.png")
-        self.copyright = load_image("assets/images/copyright.png")
+        self.background = load_image("assets/image/background.png")
+        self.ground = load_image("assets/image/ground.png")
+        self.copyright = load_image("assets/image/copyright.png")
+
+        self.b_start = load_image("assets/image/button/start.png")
 
 
-class Sounds:
+class Sound:
     def __init__(self):
         pass
 
@@ -28,6 +30,6 @@ class Font:
 
 class Assets:
     def __init__(self):
-        self.images = Images()
-        self.sounds = Sounds()
+        self.image = Image()
+        self.sound = Sound()
         self.font = Font()

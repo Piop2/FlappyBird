@@ -1,16 +1,13 @@
-import pygame
-
-
 class MenuUI:
     def __init__(self, game):
         self.game = game
 
-        self.background = game.assets.images.background
-        self.ground = game.assets.images.ground
+        self.background = game.assets.image.background
+        self.ground = game.assets.image.ground
         self.ground_x = 0
         self.ground_speed = 0.07
 
-        self.copyright = game.assets.images.copyright
+        self.copyright = game.assets.image.copyright
     
     def update(self, dt):
         self.ground_x -= self.ground_speed * dt

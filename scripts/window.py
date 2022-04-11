@@ -2,7 +2,7 @@ import pygame
 
 
 class Window:
-    def __init__(self):
+    def __init__(self, game):
         self.WINDOW_SIZE = (360, 640)
         self.DISPLAY_SIZE = (144, 256)
 
