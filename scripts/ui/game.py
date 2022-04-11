@@ -5,7 +5,7 @@ class GameUI:
     def __init__(self, game):
         self.game = game
 
-        self.ground = game.assets.images.ground
+        self.ground = game.assets.image.ground
         self.ground_x = 0
         self.ground_speed = 0.07
 
