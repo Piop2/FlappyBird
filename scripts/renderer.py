@@ -1,6 +1,29 @@
 import pygame
 
-from .ui.game import GameUI
+from scripts.ui.menu import MenuUI
+from scripts.ui.game import GameUI
+
+
+class UI:
+    def __init__(self, game):
+        self._ui = {
+            "menu": MenuUI(game),
+            "game": GameUI(game)
+        }
+        self._mode = "menu"
+
+    @property
+    def ui(self):
+        return self._ui[self._mode]
+
+    def set_mode(self, new_mode):
+        self._mode = new_mode
+
+    def update(self, dt):
+        self.ui.update(dt)
+
+    def render(self):
+        self.ui.render()
 
 
 class Renderer:
@@ -10,27 +33,14 @@ class Renderer:
         self.fps = 60
         self.clock = pygame.time.Clock()
 
-        self.ui = {
-            "game": GameUI(game)
-        }
-        self.ui_mode = "game"
-    
-    def get_ui(self):
-        return self.ui[self.ui_mode]
-    
-    def set_ui(self, new_mode):
-        self.ui_mode = new_mode
-        return
+        self.ui = UI(game)
 
     def update(self):
         dt = self.clock.tick(self.fps)
         display = self.game.window.display
 
-        display.blit(self.game.assets.images.background, (0, 0))
-
-        ui = self.get_ui()
-        ui.update(dt)
-        ui.render()
+        self.ui.update(dt)
+        self.ui.render()
 
         self.game.window.window.blit(pygame.transform.scale(display, self.game.window.WINDOW_SIZE), (0, 0))
         pygame.display.update()
