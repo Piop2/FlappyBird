@@ -42,9 +42,17 @@ class Renderer:
     def update(self):
         self.dt = self.clock.tick(self.fps)
         display = self.game.window.display
+        window = self.game.window.window
+        monitor_size = self.game.window.MONITOR_SIZE
+        window_size = self.game.window.WINDOW_SIZE
+        fullscreen = self.game.window.fullscreen
 
         self.ui.update()
         self.ui.render()
 
-        self.game.window.window.blit(pygame.transform.scale(display, self.game.window.WINDOW_SIZE), (0, 0))
+        if fullscreen:
+            window.blit(pygame.transform.scale(display, monitor_size), (0, 0))
+        else:
+            window.blit(pygame.transform.scale(display, window_size), (0, 0))
+
         pygame.display.update()

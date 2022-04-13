@@ -1,6 +1,6 @@
 {
   "WindowSize": [360, 640],
-  "FullScreen": true,
+  "FullScreen": false,
   "AllWindowSizes": [
     [144, 256],
     [216, 384],
