@@ -1,6 +1,6 @@
 import pygame
-
 from math import gcd
+
 
 class Input:
     def __init__(self, game):
@@ -10,8 +10,8 @@ class Input:
 
     def get_mouse_pos(self):
         window_mouse_pos = pygame.mouse.get_pos()
-        ratio = (gcd(self.game.window.WINDOW_SIZE[0], self.game.window.DISPLAY_SIZE[0]), gcd(self.game.window.WINDOW_SIZE[1], self.game.window.DISPLAY_SIZE[1]))
-        display_mouse_pos = (window_mouse_pos[0] / ratio[0] * 2, window_mouse_pos[1] / ratio[1] * 2)
+        display_mouse_pos = (window_mouse_pos[0] * self.game.window.DISPLAY_SIZE[0] / self.game.window.WINDOW_SIZE[0],
+                             window_mouse_pos[1] * self.game.window.DISPLAY_SIZE[1] / self.game.window.WINDOW_SIZE[1])
         return display_mouse_pos
 
     def update(self):
@@ -21,13 +21,16 @@ class Input:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 self.game.running = False
-            
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
                     for button_name, button in list(self.game.renderer.get_ui().buttons.items()):
                         button.is_pushed(mouse_pos)
-            
+
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
                     for button_name, button in list(self.game.renderer.get_ui().buttons.items()):
+                        if button.pushed:
+                            print(f"button selected: {button_name}")
+
                         button.push_up()
