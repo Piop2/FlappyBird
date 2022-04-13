@@ -31,6 +31,8 @@ class Configs:
 
 class Images:
     def __init__(self):
+        self.icon = load_image("assets/images/icon/icon_50.png")
+
         self.background = load_image("assets/images/background.png")
         self.ground = load_image("assets/images/ground.png")
 

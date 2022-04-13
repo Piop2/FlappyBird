@@ -13,6 +13,7 @@ class Window:
         self.window = pygame.display.set_mode(self.WINDOW_SIZE)
         self.display = pygame.Surface(self.DISPLAY_SIZE)
         pygame.display.set_caption("Flappy Bird")
+        pygame.display.set_icon(game.assets.images.icon)
 
         if self.fullscreen:
             self.set_fullscreen()
