@@ -9,7 +9,9 @@ class GameUI:
         self.ground_x = 0
         self.ground_speed = 0.07
 
-    def update(self, dt):
+    def update(self):
+        dt = self.game.renderer.dt
+
         self.ground_x -= self.ground_speed * dt
         if self.ground_x <= - self.ground.get_width():
             self.ground_x = 0

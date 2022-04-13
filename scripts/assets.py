@@ -16,7 +16,7 @@ class Image:
         self.copyright = load_image("assets/image/copyright.png")
 
         self.b_start = load_image("assets/image/button/start.png")
-
+        self.b_score = load_image("assets/image/button/score.png")
 
 class Sound:
     def __init__(self):

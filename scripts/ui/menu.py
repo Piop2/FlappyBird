@@ -1,3 +1,5 @@
+from scripts.button import Button
+
 class MenuUI:
     def __init__(self, game):
         self.game = game
@@ -8,8 +10,13 @@ class MenuUI:
         self.ground_speed = 0.07
 
         self.copyright = game.assets.image.copyright
+
+        self.buttons = {
+            "start": Button(game.assets.image.b_start, (20, 160))
+        }
     
-    def update(self, dt):
+    def update(self):
+        dt = self.game.renderer.dt
         self.ground_x -= self.ground_speed * dt
         if self.ground_x <= - self.ground.get_width():
             self.ground_x = 0
@@ -25,3 +32,7 @@ class MenuUI:
                                    self.game.window.DISPLAY_SIZE[1] - self.ground.get_height()))
         display.blit(self.copyright, ((self.game.window.DISPLAY_SIZE[0] / 2) - (self.copyright.get_width() / 2),
                                       215))
+        
+        # buttons #
+        for button in list(self.buttons.values()):
+            button.render(display)

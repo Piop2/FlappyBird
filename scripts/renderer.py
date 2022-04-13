@@ -19,8 +19,8 @@ class UI:
     def set_mode(self, new_mode):
         self._mode = new_mode
 
-    def update(self, dt):
-        self.ui.update(dt)
+    def update(self):
+        self.ui.update()
 
     def render(self):
         self.ui.render()
@@ -32,14 +32,18 @@ class Renderer:
 
         self.fps = 60
         self.clock = pygame.time.Clock()
+        self.dt = 0
 
         self.ui = UI(game)
+    
+    def get_ui(self):
+        return self.ui.ui
 
     def update(self):
-        dt = self.clock.tick(self.fps)
+        self.dt = self.clock.tick(self.fps)
         display = self.game.window.display
 
-        self.ui.update(dt)
+        self.ui.update()
         self.ui.render()
 
         self.game.window.window.blit(pygame.transform.scale(display, self.game.window.WINDOW_SIZE), (0, 0))
