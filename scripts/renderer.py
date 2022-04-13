@@ -30,7 +30,7 @@ class Renderer:
     def __init__(self, game):
         self.game = game
 
-        self.fps = 60
+        self.FPS = game.assets.configs.fps
         self.clock = pygame.time.Clock()
         self.dt = 0
 
@@ -40,7 +40,7 @@ class Renderer:
         return self.ui.ui
 
     def update(self):
-        self.dt = self.clock.tick(self.fps)
+        self.dt = self.clock.tick(self.FPS)
         display = self.game.window.display
         window = self.game.window.window
         monitor_size = self.game.window.MONITOR_SIZE

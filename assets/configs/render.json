@@ -1,0 +1,12 @@
+{
+  "FPS": 60,
+  "ShowFPS": false,
+  "Settings": {
+    "FPSModes": [
+      30,
+      60,
+      100,
+      120
+    ]
+  }
+}

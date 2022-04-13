@@ -10,6 +10,8 @@ class MenuUI:
         self.ground_x = 0
         self.ground_speed = game.assets.configs.bird_speed
 
+        self.title = game.assets.images.t_flappy_bird
+
         self.copyright = game.assets.images.copyright
 
         self.buttons = {
@@ -38,3 +40,5 @@ class MenuUI:
         # buttons #
         for button in list(self.buttons.values()):
             button.render(display)
+
+        display.blit(self.title, (0, 0))

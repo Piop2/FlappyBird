@@ -1,11 +1,14 @@
 {
-  "WindowSize": [360, 640],
-  "FullScreen": false,
-  "AllWindowSizes": [
-    [144, 256],
-    [216, 384],
-    [288, 512],
-    [360, 640],
-    [432, 768]
-  ]
+  "WindowSize": [432, 768],
+  "Settings": {
+    "FullScreen": false,
+    "WindowModes": [
+      [144, 256],
+      [216, 384],
+      [288, 512],
+      [360, 640],
+      [432, 768]
+    ]
+  }
+
 }

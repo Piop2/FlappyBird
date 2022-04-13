@@ -23,15 +23,20 @@ class Configs:
 
         window = load_json("assets/configs/window.json")
         self.window_size = window["WindowSize"]
-        self.fullscreen = window["FullScreen"]
+        self.fullscreen = window["Settings"]["FullScreen"]
+
+        render = load_json("assets/configs/render.json")
+        self.fps = render["FPS"]
 
 
 class Images:
     def __init__(self):
         self.background = load_image("assets/images/background.png")
         self.ground = load_image("assets/images/ground.png")
-        self.copyright = load_image("assets/images/copyright.png")
 
+        # MenuUI #
+        self.t_flappy_bird = load_image("assets/images/titles/flappy_bird.png")
+        self.copyright = load_image("assets/images/copyright.png")
         self.b_start = load_image("assets/images/buttons/start.png")
         self.b_score = load_image("assets/images/buttons/score.png")
 
