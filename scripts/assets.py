@@ -1,4 +1,5 @@
 import pygame
+import json
 
 COLORKEY = (100, 100, 200)
 
@@ -9,28 +10,45 @@ def load_image(path):
     return img
 
 
-class Image:
+def load_json(path):
+    with open(path, 'r') as f:
+        data = json.load(f)
+    return data
+
+
+class Configs:
     def __init__(self):
-        self.background = load_image("assets/image/background.png")
-        self.ground = load_image("assets/image/ground.png")
-        self.copyright = load_image("assets/image/copyright.png")
+        game = load_json("assets/configs/game.json")
+        self.bird_speed = game["BirdSpeed"]
 
-        self.b_start = load_image("assets/image/button/start.png")
-        self.b_score = load_image("assets/image/button/score.png")
+        window = load_json("assets/configs/window.json")
+        self.window_size = window["WindowSize"]
+        self.fullscreen = window["FullScreen"]
 
 
-class Sound:
+class Images:
+    def __init__(self):
+        self.background = load_image("assets/images/background.png")
+        self.ground = load_image("assets/images/ground.png")
+        self.copyright = load_image("assets/images/copyright.png")
+
+        self.b_start = load_image("assets/images/buttons/start.png")
+        self.b_score = load_image("assets/images/buttons/score.png")
+
+
+class Sounds:
     def __init__(self):
         pass
 
 
-class Font:
+class Fonts:
     def __init__(self):
         pass
 
 
 class Assets:
     def __init__(self):
-        self.image = Image()
-        self.sound = Sound()
-        self.font = Font()
+        self.configs = Configs()
+        self.images = Images()
+        self.sounds = Sounds()
+        self.fonts = Fonts()

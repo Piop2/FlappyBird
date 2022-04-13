@@ -5,16 +5,16 @@ class MenuUI:
     def __init__(self, game):
         self.game = game
 
-        self.background = game.assets.image.background
-        self.ground = game.assets.image.ground
+        self.background = game.assets.images.background
+        self.ground = game.assets.images.ground
         self.ground_x = 0
-        self.ground_speed = 0.07
+        self.ground_speed = game.assets.configs.bird_speed
 
-        self.copyright = game.assets.image.copyright
+        self.copyright = game.assets.images.copyright
 
         self.buttons = {
-            "start": Button(game.assets.image.b_start, (20, 160)),
-            "share": Button(game.assets.image.b_score, (84, 160))
+            "start": Button(game.assets.images.b_start, (20, 160)),
+            "share": Button(game.assets.images.b_score, (84, 160))
         }
 
     def update(self):

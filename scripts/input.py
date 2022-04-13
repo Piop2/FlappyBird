@@ -1,5 +1,4 @@
 import pygame
-from math import gcd
 
 
 class Input:
@@ -31,6 +30,6 @@ class Input:
                 if event.button == 1:
                     for button_name, button in list(self.game.renderer.get_ui().buttons.items()):
                         if button.pushed:
-                            print(f"button selected: {button_name}")
-
+                            pass
+                            # print(f"button selected: {button_name}")
                         button.push_up()
