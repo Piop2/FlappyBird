@@ -6,6 +6,7 @@ class Input:
         self.game = game
 
         self.click = False
+        self.select = ""
 
     def get_mouse_pos(self):
         window_mouse_pos = pygame.mouse.get_pos()
@@ -15,6 +16,8 @@ class Input:
 
     def update(self):
         mouse_pos = self.get_mouse_pos()
+
+        self.select = ""
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -30,6 +33,5 @@ class Input:
                 if event.button == 1:
                     for button_name, button in list(self.game.renderer.get_ui().buttons.items()):
                         if button.pushed:
-                            pass
-                            # print(f"button selected: {button_name}")
+                            self.select = button_name
                         button.push_up()

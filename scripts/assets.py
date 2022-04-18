@@ -18,15 +18,29 @@ def load_json(path):
 
 class Configs:
     def __init__(self):
-        game = load_json("assets/configs/game.json")
+        config = load_json("assets/config.json")
+        game = config["Game"]
+        window = config["Window"]
+        render = config["Render"]
+        debug = config["Debug"]
+
+        # Game #
         self.bird_speed = game["BirdSpeed"]
 
-        window = load_json("assets/configs/window.json")
+        # Window #
+        self.caption = window["Caption"]
         self.window_size = window["WindowSize"]
-        self.fullscreen = window["Settings"]["FullScreen"]
+        self.fullscreen = window["FullScreen"]
 
-        render = load_json("assets/configs/render.json")
-        self.fps = render["FPS"]
+        # Render #
+        self.fps = render["Fps"]
+
+        # Settings #
+        self.screen_modes = window["WindowModes"]
+        self.fps_modes = render["FpsModes"]
+
+        # Debugs #
+        self.show_fps = debug["ShowFps"]
 
 
 class Images:
