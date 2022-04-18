@@ -21,6 +21,8 @@ class MenuUI:
 
     def update(self):
         dt = self.game.renderer.dt
+        select = self.game.input.select
+
         self.ground_x -= self.ground_speed * dt
         if self.ground_x <= - self.ground.get_width():
             self.ground_x = 0
