@@ -16,6 +16,8 @@ class MenuUI(UI):
         self.title_origin_y = 40
         self.title_y = 40
         self.title_direction = -1
+        self.title_go = True
+        self.title_cool_timer = 0
 
         self.copyright = game.assets.images.copyright
 
@@ -26,16 +28,23 @@ class MenuUI(UI):
         self.select = ""
 
     def update(self):
-        dt = self.game.renderer.dt
+        dt = self.game.renderer.get_dt()
         select = self.game.input.select
 
         self.ground_x -= self.ground_speed * dt
         if self.ground_x <= - self.ground.get_width():
             self.ground_x = 0
         
+        title_movement = self.game.assets.configs.t_menu_movement:
         self.title_y += self.title_direction * self.game.assets.configs.t_menu_speed
-        if abs(self.title_origin_y - self.title_y) >= self.game.assets.configs.t_menu_movement:
+        if self.title_y - self.title_origin_y >= title_movement:
+            self.title_y = self.title_origin_y + title_movement
+            self.title_go = False
             self.title_direction *= -1
+        elif self.title_origin_y - self.title_y >= title_movement:
+            self.title_y = self.title_origin_y - title_movement
+            self.title_direction *= -1
+        
         
         if select:
             self.select = select

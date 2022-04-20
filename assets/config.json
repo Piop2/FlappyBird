@@ -19,8 +19,9 @@
     "FpsModes": [30, 60, 100, 120],
     "ImageAnimation": {
       "MenuUiTitle": {
-        "MovementRange": 10,
-        "Speed": 0.5
+        "MovementRange": 4,
+        "Speed": 0.35,
+        "CoolTime": 0.2
       }
     }
   },

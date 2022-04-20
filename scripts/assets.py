@@ -39,6 +39,7 @@ class Configs:
         menu_title = image_animation["MenuUiTitle"]
         self.t_menu_movement = menu_title["MovementRange"]
         self.t_menu_speed = menu_title["Speed"]
+        self.t_menu_cool = menu_title["CoolTime"]
 
         # vfx #
         self.ui_fadeout_s = vfx["UiFadeOutSpeed"]

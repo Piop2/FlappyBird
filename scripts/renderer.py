@@ -39,11 +39,14 @@ class Renderer:
         self.ui = UI(game)
         self.fade = FadeOut((0, 0, 0), game.assets.configs.ui_fadeout_s)
     
+    def get_dt(self):
+        return self.dt
+
     def get_ui(self):
         return self.ui.ui
     
     def set_ui(self, new_mode):
-        is_faded = self.fade.update(self.dt)
+        is_faded = self.fade.update(self.get_dt())
 
         if is_faded:
             self.ui.set_mode(new_mode)
