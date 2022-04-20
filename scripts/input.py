@@ -31,7 +31,7 @@ class Input:
 
             if event.type == pygame.MOUSEBUTTONUP:
                 if event.button == 1:
-                    for button_name, button in list(self.game.renderer.get_ui().buttons.items()):
+                    for button_name, button in list(self.game.renderer.get_ui().get_buttons().items()):
                         if button.pushed:
                             self.select = button_name
                         button.push_up()

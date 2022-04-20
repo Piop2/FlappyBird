@@ -3,6 +3,8 @@ import pygame
 from scripts.ui.menu import MenuUI
 from scripts.ui.game import GameUI
 
+from scripts.vfx import FadeOut
+
 
 class UI:
     def __init__(self, game):
@@ -35,9 +37,17 @@ class Renderer:
         self.dt = 0
 
         self.ui = UI(game)
+        self.fade = FadeOut((0, 0, 0), game.assets.configs.ui_fadeout_s)
     
     def get_ui(self):
         return self.ui.ui
+    
+    def set_ui(self, new_mode):
+        is_faded = self.fade.update(self.dt)
+
+        if is_faded:
+            self.ui.set_mode(new_mode)
+            self.fade.init_alpha()
 
     def update(self):
         self.dt = self.clock.tick(self.FPS)
@@ -47,12 +57,16 @@ class Renderer:
         window_size = self.game.window.WINDOW_SIZE
         fullscreen = self.game.window.fullscreen
 
-        self.ui.update()
-        self.ui.render()
+        display.fill((255, 255, 255))
+
+        self.get_ui().update()
+        self.get_ui().render()
 
         if fullscreen:
             window.blit(pygame.transform.scale(display, monitor_size), (0, 0))
         else:
             window.blit(pygame.transform.scale(display, window_size), (0, 0))
+
+        self.fade.render(window)
 
         pygame.display.update()

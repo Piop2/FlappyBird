@@ -16,7 +16,16 @@
   },
   "Render": {
     "Fps": 60,
-    "FpsModes": [30, 60, 100, 120]
+    "FpsModes": [30, 60, 100, 120],
+    "ImageAnimation": {
+      "MenuUiTitle": {
+        "MovementRange": 10,
+        "Speed": 0.5
+      }
+    }
+  },
+  "Vfx": {
+    "UiFadeOutSpeed": 0.5
   },
   "Debug": {
     "ShowFps": false

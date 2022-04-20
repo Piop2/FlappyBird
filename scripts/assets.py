@@ -18,11 +18,12 @@ def load_json(path):
 
 class Configs:
     def __init__(self):
-        config = load_json("assets/config.json")
-        game = config["Game"]
-        window = config["Window"]
-        render = config["Render"]
-        debug = config["Debug"]
+        configs = load_json("assets/config.json")
+        game = configs["Game"]
+        window = configs["Window"]
+        render = configs["Render"]
+        vfx = configs["Vfx"]
+        debug = configs["Debug"]
 
         # Game #
         self.bird_speed = game["BirdSpeed"]
@@ -34,6 +35,13 @@ class Configs:
 
         # Render #
         self.fps = render["Fps"]
+        image_animation = render["ImageAnimation"]
+        menu_title = image_animation["MenuUiTitle"]
+        self.t_menu_movement = menu_title["MovementRange"]
+        self.t_menu_speed = menu_title["Speed"]
+
+        # vfx #
+        self.ui_fadeout_s = vfx["UiFadeOutSpeed"]
 
         # Settings #
         self.screen_modes = window["WindowModes"]
