@@ -16,7 +16,7 @@ def load_animation(path):
 
         image = clip(img, x, y, w, h)
 
-        animation_data.append({"image": image, "d": int(d)})
+        animation_data.append({"image": image, "d": d})
     return tuple(animation_data)
 
 
@@ -31,7 +31,6 @@ class Animation:
         self.layer = 0
         self._speed = 1
         self.frame = 0
-        self.pause = False
 
     @property
     def image(self):
@@ -43,23 +42,16 @@ class Animation:
 
     @speed.setter
     def speed(self, new_speed):
-        self._speed = new_speed
-
-    def play(self):
-        self.pause = False
-
-    def stop(self):
-        self.pause = True
+        self._speed = int(new_speed)
 
     def update(self, dt):
-        if not self.pause:
-            self.frame += dt / 10 * self.speed
-            if self.frame >= self.ani_data[self.layer]["d"]:
-                self.frame = 0
-                if self.layer >= len(self.ani_data):
-                    self.layer = 0
-                else:
-                    self.layer += 1
+        self.frame += dt / 1000 * self.speed
+        if self.frame >= self.ani_data[self.layer]["d"]:
+            self.frame = 0
+            if self.layer >= len(self.ani_data) - 1:
+                self.layer = 0
+            else:
+                self.layer += 1
 
     def render(self, surf, pos):
         surf.blit(self.image, pos)

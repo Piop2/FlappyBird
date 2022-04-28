@@ -36,20 +36,22 @@ class Renderer:
         self.clock = pygame.time.Clock()
         self.dt = 0
 
-        self.ui = UI(game)
+        self._ui = UI(game)
         self.fade = FadeOut((0, 0, 0), game.assets.configs.ui_fadeout_s)
     
     def get_dt(self):
         return self.dt
 
-    def get_ui(self):
-        return self.ui.ui
-    
-    def set_ui(self, new_mode):
+    @property
+    def ui(self):
+        return self._ui.ui
+
+    @ui.setter
+    def ui(self, new_mode):
         is_faded = self.fade.update(self.get_dt())
 
         if is_faded:
-            self.ui.set_mode(new_mode)
+            self._ui.set_mode(new_mode)
             self.fade.init_alpha()
 
     def update(self):
@@ -62,8 +64,8 @@ class Renderer:
 
         display.fill((255, 255, 255))
 
-        self.get_ui().update()
-        self.get_ui().render()
+        self.ui.update()
+        self.ui.render()
 
         if fullscreen:
             window.blit(pygame.transform.scale(display, monitor_size), (0, 0))
