@@ -11,7 +11,7 @@ class GameUI(UI):
         self.ground_x = 0
         self.ground_speed = game.assets.configs.bird_speed
 
-        self.buttons = {}
+        self._buttons = {}
 
     def update(self):
         dt = self.game.renderer.dt

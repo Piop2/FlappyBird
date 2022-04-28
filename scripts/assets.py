@@ -21,11 +21,15 @@ class Configs:
 
         # Render #
         self.fps = render["Fps"]
-        image_animation = render["ImageAnimation"]
-        menu_title = image_animation["MenuUiTitle"]
+        ui = render["UI"]
+
+        menu_ui = ui["MenuUI"]
+        menu_title = menu_ui["Title"]
         self.t_menu_movement = menu_title["MovementRange"]
         self.t_menu_speed = menu_title["Speed"]
         self.t_menu_cool = menu_title["CoolTime"]
+
+        self.menu_bird_speed = menu_ui["Bird"]["Speed"]
 
         # vfx #
         self.ui_fadeout_s = vfx["UiFadeOutSpeed"]

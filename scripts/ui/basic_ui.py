@@ -2,10 +2,14 @@ class UI:
     def __init__(self, game):
         self.game = game
 
-        self.buttons = {}
+        self._buttons = {}
 
-    def get_buttons(self):
-        return self.buttons
+    def init_ui(self):
+        return
+
+    @property
+    def buttons(self):
+        return self._buttons
 
     def update(self):
         return

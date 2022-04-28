@@ -42,7 +42,7 @@ class Animation:
 
     @speed.setter
     def speed(self, new_speed):
-        self._speed = int(new_speed)
+        self._speed = float(new_speed)
 
     def update(self, dt):
         self.frame += dt / 1000 * self.speed

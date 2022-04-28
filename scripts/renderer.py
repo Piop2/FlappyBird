@@ -53,6 +53,7 @@ class Renderer:
         if is_faded:
             self._ui.set_mode(new_mode)
             self.fade.init_alpha()
+            self.ui.init_ui()
 
     def update(self):
         self.dt = self.clock.tick(self.FPS)

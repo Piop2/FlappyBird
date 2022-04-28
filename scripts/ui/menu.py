@@ -13,6 +13,7 @@ class MenuUI(UI):
         self.ground_speed = game.assets.configs.bird_speed
 
         self.bird = game.assets.images.bird_ani  # animation
+        self.bird.speed = game.assets.configs.menu_bird_speed
 
         self.title = game.assets.images.t_flappy_bird
         self.title_origin_y = 40
@@ -20,13 +21,28 @@ class MenuUI(UI):
         self.title_direction = -1
         self.title_go = True
         self.title_cool_timer = 0
+        self.title_movement = self.game.assets.configs.t_menu_movement
+        self.title_speed = self.game.assets.configs.t_menu_speed
+
 
         self.copyright = game.assets.images.copyright
 
-        self.buttons = {
+        self._buttons = {
             "start": Button(game.assets.images.b_start, (20, 160)),
             "share": Button(game.assets.images.b_score, (84, 160))
         }
+        self.select = ""
+
+    def init_ui(self):
+        self.ground_x = 0
+
+        self.bird.speed = 0.25
+
+        self.title_y = 40
+        self.title_direction = -1
+        self.title_go = True
+        self.title_cool_timer = 0
+
         self.select = ""
 
     def update(self):
@@ -42,14 +58,13 @@ class MenuUI(UI):
         if self.ground_x <= - self.ground.get_width():
             self.ground_x = 0
 
-        title_movement = self.game.assets.configs.t_menu_movement
-        self.title_y += self.title_direction * self.game.assets.configs.t_menu_speed
-        if self.title_y - self.title_origin_y >= title_movement:
-            self.title_y = self.title_origin_y + title_movement
+        self.title_y += self.title_direction * self.title_speed
+        if self.title_y - self.title_origin_y >= self.title_movement:
+            self.title_y = self.title_origin_y + self.title_movement
             self.title_go = False
             self.title_direction *= -1
-        elif self.title_origin_y - self.title_y >= title_movement:
-            self.title_y = self.title_origin_y - title_movement
+        elif self.title_origin_y - self.title_y >= self.title_movement:
+            self.title_y = self.title_origin_y - self.title_movement
             self.title_direction *= -1
 
         # button #
@@ -73,6 +88,6 @@ class MenuUI(UI):
         for button in list(self.buttons.values()):
             button.render(display)
 
-        display.blit(self.title, (10, self.title_y))
+        display.blit(self.title, (15, self.title_y))
 
-        self.bird.render(display, (0, 0))
+        self.bird.render(display, (116, self.title_y + 5))
