@@ -25,4 +25,3 @@ class Window:
     def set_window(self):
         self.fullscreen = False
         pygame.display.set_mode(self.WINDOW_SIZE)
-

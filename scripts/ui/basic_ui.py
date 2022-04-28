@@ -7,7 +7,7 @@ class UI:
     def get_buttons(self):
         return self.buttons
     
-    def update(self, dt):
+    def update(self):
         return
     
     def render(self):

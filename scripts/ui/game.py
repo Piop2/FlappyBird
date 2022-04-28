@@ -3,6 +3,7 @@ from scripts.ui.basic_ui import UI
 
 class GameUI(UI):
     def __init__(self, game):
+        super().__init__(game)
         self.game = game
 
         self.background = game.assets.images.background

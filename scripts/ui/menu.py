@@ -5,7 +5,7 @@ from scripts.button import Button
 
 class MenuUI(UI):
     def __init__(self, game):
-        self.game = game
+        super().__init__(game)
 
         self.background = game.assets.images.background
         self.ground = game.assets.images.ground
@@ -35,7 +35,7 @@ class MenuUI(UI):
         if self.ground_x <= - self.ground.get_width():
             self.ground_x = 0
         
-        title_movement = self.game.assets.configs.t_menu_movement:
+        title_movement = self.game.assets.configs.t_menu_movement
         self.title_y += self.title_direction * self.game.assets.configs.t_menu_speed
         if self.title_y - self.title_origin_y >= title_movement:
             self.title_y = self.title_origin_y + title_movement
