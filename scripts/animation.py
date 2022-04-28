@@ -1,6 +1,7 @@
 from scripts.core.load_f import load_image, load_json
 from scripts.core.clip import clip
 
+
 def load_animation(path):
     cfg = load_json(f"{path}/config.json")
     img = load_image(f"{path}/images.png")
@@ -15,11 +16,16 @@ def load_animation(path):
 
         image = clip(img, x, y, w, h)
 
-        animation_data.append({"image": image, "d": d})
+        animation_data.append({"image": image, "d": int(d)})
     return tuple(animation_data)
 
 
 class Animation:
+
+    @staticmethod
+    def load(path):
+        return Animation(load_animation(path))
+
     def __init__(self, ani_data):
         self.ani_data = ani_data
         self.layer = 0
@@ -29,7 +35,7 @@ class Animation:
 
     @property
     def image(self):
-        return self.ani_data[self.layer]
+        return self.ani_data[self.layer]["image"]
 
     @property
     def speed(self):
@@ -50,7 +56,10 @@ class Animation:
             self.frame += dt / 10 * self.speed
             if self.frame >= self.ani_data[self.layer]["d"]:
                 self.frame = 0
-                self.layer += 0 if self.layer >= len(self.ani_data) else 1
+                if self.layer >= len(self.ani_data):
+                    self.layer = 0
+                else:
+                    self.layer += 1
 
     def render(self, surf, pos):
         surf.blit(self.image, pos)

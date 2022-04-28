@@ -1,4 +1,5 @@
 from scripts.core.load_f import load_json, load_image
+from scripts.animation import Animation
 
 
 class Configs:
@@ -40,6 +41,8 @@ class Configs:
 class Images:
     def __init__(self):
         self.icon = load_image("assets/images/icon/icon_50.png")
+
+        self.bird_ani = Animation.load("assets/images/bird")
 
         self.background = load_image("assets/images/background.png")
         self.ground = load_image("assets/images/ground.png")
