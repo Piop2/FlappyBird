@@ -1,4 +1,4 @@
-from scripts.core.load_f import load_json, load_image
+from scripts.utils.load_f import load_json, load_image
 from scripts.animation import Animation
 
 

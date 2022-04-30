@@ -1,8 +1,8 @@
-from scripts.assets import Assets
-from scripts.window import Window
-from scripts.renderer import Renderer
-from scripts.input import Input
-from scripts.world import World
+from scripts.core.assets import Assets
+from scripts.core.window import Window
+from scripts.core.renderer import Renderer
+from scripts.core.input import Input
+from scripts.core.world import World
 
 
 class Game:

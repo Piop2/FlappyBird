@@ -1,5 +1,5 @@
-from scripts.core.load_f import load_image, load_json
-from scripts.core.clip import clip
+from scripts.utils.load_f import load_image, load_json
+from scripts.utils.clip import clip
 
 
 def load_animation(path):
