@@ -17,6 +17,14 @@
   "Render": {
     "Fps": 60,
     "FpsModes": [30, 60, 100, 120],
+    "Font":{
+      "BigScoreFont": {
+        "Space": 1
+      },
+      "SmallScoreFont": {
+        "Space": 0
+      }
+    },
     "UI": {
       "MenuUI": {
         "Title": {
@@ -25,7 +33,7 @@
           "CoolTime": 0.2
         },
         "Bird": {
-          "Speed": 0.25
+          "Speed": 0.2
         }
       }
     }

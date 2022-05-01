@@ -3,7 +3,7 @@ import pygame
 from scripts.ui.menu import MenuUI
 from scripts.ui.game import GameUI
 
-from scripts.effects.vfx import FadeOut
+from scripts.effect.vfx import FadeOut
 
 
 class UI:
