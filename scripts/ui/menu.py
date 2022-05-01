@@ -24,10 +24,6 @@ class MenuUI(UI):
         self.title_movement = self.game.assets.configs.t_menu_movement
         self.title_speed = self.game.assets.configs.t_menu_speed
 
-        # only test
-        self.test_font = game.assets.fonts.big_score_font
-        self.n = 0
-
         self.copyright = game.assets.images.copyright
 
         self._buttons = {
@@ -48,8 +44,6 @@ class MenuUI(UI):
 
     def update(self):
         dt = self.game.renderer.get_dt()
-
-        self.n += 1
 
         select = self.game.input.select
         if select:
@@ -86,8 +80,6 @@ class MenuUI(UI):
                                    display_size[1] - self.ground.get_height()))
         display.blit(self.copyright, ((display_size[0] / 2) - (self.copyright.get_width() / 2),
                                       215))
-
-        self.test_font.render(display, ((display_size[0] / 2) - (self.test_font.get_width(str(self.n)) / 2), 10),str(self.n))
 
         # buttons #
         for button in list(self.buttons.values()):

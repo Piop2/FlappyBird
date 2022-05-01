@@ -1,17 +1,20 @@
 import pygame
 
+from scripts.animation import Animation
 
-class BasicEntity:
-    def __init__(self, game, image, pos, hitbox_size):
+
+class Entity:
+    def __init__(self, game):
         self.game = game
 
-        self.image = image
-        self.pos = pos
-        self.hitbox_size = hitbox_size
+        self.image = None
+        self.pos = None
 
-    @property
-    def hitbox(self):
-        return pygame.Rect(*self.pos, *self.hitbox_size)
+    def update(self):
+        return
 
     def render(self):
-        self.game.window.display.blit(self.image, self.pos)
+        if isinstance(self.image, Animation):
+            self.image.render(self.game.window.display.blit, self.pos)
+        else:
+            self.game.window.display.blit(self.image, self.pos)
