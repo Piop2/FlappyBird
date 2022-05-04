@@ -14,18 +14,21 @@ class UI:
         }
         self._mode = "menu"
 
+    def get(self):
+        return self._ui[self.mode]
+    
     @property
-    def ui(self):
-        return self._ui[self._mode]
+    def mode(self):
+        return self._mode
 
     def set_mode(self, new_mode):
         self._mode = new_mode
 
     def update(self):
-        self.ui.update()
+        self.get().update()
 
     def render(self):
-        self.ui.render()
+        self.get().render()
 
 
 class Renderer:
@@ -36,24 +39,22 @@ class Renderer:
         self.clock = pygame.time.Clock()
         self.dt = 0
 
-        self._ui = UI(game)
+        self.ui = UI(game)
         self.fade = FadeOut((0, 0, 0), game.assets.configs.ui_fadeout_s)
     
     def get_dt(self):
         return self.dt
+    
+    def get_ui(self):
+        return self.ui.get()
 
-    @property
-    def ui(self):
-        return self._ui.ui
-
-    @ui.setter
-    def ui(self, new_mode):
+    def set_ui(self, new_mode):
         is_faded = self.fade.update(self.get_dt())
 
         if is_faded:
-            self._ui.set_mode(new_mode)
+            self.ui.set_mode(new_mode)
             self.fade.init_alpha()
-            self.ui.init_ui()
+            self.get_ui().init_ui()
 
     def update(self):
         self.dt = self.clock.tick(self.FPS)
@@ -67,6 +68,7 @@ class Renderer:
 
         self.ui.update()
         self.ui.render()
+        print(self.ui)
 
         if fullscreen:
             window.blit(pygame.transform.scale(display, monitor_size), (0, 0))

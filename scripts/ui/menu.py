@@ -66,7 +66,7 @@ class MenuUI(UI):
 
         # button #
         if self.select == "start":
-            self.game.renderer.ui = "game"
+            self.game.renderer.set_ui("game")
 
     def render(self):
         display = self.game.window.display
