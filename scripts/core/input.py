@@ -8,6 +8,8 @@ class Input:
         self.click = False
         self.select = ""
 
+        self.jump = False
+
     def _get_mouse_pos(self):
         window_mouse_pos = pygame.mouse.get_pos()
         display_mouse_pos = (window_mouse_pos[0] * self.game.window.DISPLAY_SIZE[0] / self.game.window.WINDOW_SIZE[0],
@@ -38,3 +40,12 @@ class Input:
                         if button.pushed:
                             self.select = button_name
                         button.push_up()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    if not self.game.world.gameover:
+                        self.jump = True
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    self.jump = False

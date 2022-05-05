@@ -3,6 +3,7 @@ from scripts.animation import Animation
 
 from scripts.font import Font
 
+
 class Configs:
     def __init__(self):
         configs = load_json("assets/config.json")
@@ -10,7 +11,11 @@ class Configs:
         # Game #
         game = configs["Game"]
 
-        self.bird_speed = game["BirdSpeed"]
+        bird = game["Bird"]
+        self.bird_speed = bird["Speed"]
+        self.bird_jump_power = bird["JumpPower"]
+
+        self.gravity = game["Gravity"]
 
         # Window #
         window = configs["Window"]
@@ -23,16 +28,16 @@ class Configs:
         render = configs["Render"]
 
         self.fps = render["Fps"]
-        
+
         font = render["Font"]
-        
+
         self.big_score_font_space = font["BigScoreFont"]["Space"]
         self.small_score_font_space = font["SmallScoreFont"]["Space"]
 
         ui = render["UI"]
 
         menu_ui = ui["MenuUI"]
-        
+
         menu_title = menu_ui["Title"]
 
         self.t_menu_movement = menu_title["MovementRange"]
@@ -43,8 +48,9 @@ class Configs:
 
         # vfx #
         vfx = configs["Vfx"]
-        
+
         self.ui_fadeout_s = vfx["UiFadeOutSpeed"]
+        self.gameover_fadeout_s = vfx["GameOverFadeOutSpeed"]
 
         # Settings #
         self.screen_modes = window["WindowModes"]
@@ -60,7 +66,9 @@ class Images:
     def __init__(self):
         self.icon = load_image("assets/images/icon/icon_50.png")
 
-        self.bird_ani = Animation.load("assets/images/bird")
+        self.bird = load_image("assets/images/bird.png")
+
+        self.game_bird_ani = Animation.load("assets/images/bird")
 
         self.menu_bird_ani = Animation.load("assets/images/bird")
 
@@ -86,6 +94,7 @@ class Fonts:
     def __init__(self, assets):
         self.big_score_font = Font.load("assets/fonts/big_score_font.png", assets.configs.big_score_font_space)
         self.small_score_font = Font.load("assets/fonts/small_score_font.png", assets.configs.small_score_font_space)
+
 
 class Assets:
     def __init__(self):

@@ -11,6 +11,11 @@ class UI:
     def buttons(self):
         return self._buttons
 
+    def _render_buttons(self):
+        display = self.game.window.display
+        for button in list(self.buttons.values()):
+            button.render(display)
+
     def update(self):
         return
 

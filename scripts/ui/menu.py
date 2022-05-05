@@ -43,7 +43,7 @@ class MenuUI(UI):
         self.select = ""
 
     def update(self):
-        dt = self.game.renderer.get_dt()
+        dt = self.game.renderer.dt
 
         select = self.game.input.select
         if select:
@@ -82,8 +82,7 @@ class MenuUI(UI):
                                       215))
 
         # buttons #
-        for button in list(self.buttons.values()):
-            button.render(display)
+        self._render_buttons()
 
         display.blit(self.title, (15, self.title_y))
 

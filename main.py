@@ -11,9 +11,11 @@ class Game:
 
         self.assets = Assets()
         self.window = Window(self)
+        self.world = World(self)
         self.renderer = Renderer(self)
         self.input = Input(self)
-        self.world = World(self)
+
+        self.renderer.ui.set_mode("game")
 
     def update(self):
         self.renderer.update()
