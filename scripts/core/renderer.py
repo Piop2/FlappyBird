@@ -12,17 +12,13 @@ class UI:
             "menu": MenuUI(game),
             "game": GameUI(game)
         }
-        self._mode = "menu"
+        self.mode = "menu"
 
     def get(self):
         return self._ui[self.mode]
-    
-    @property
-    def mode(self):
-        return self._mode
 
     def set_mode(self, new_mode):
-        self._mode = new_mode
+        self.mode = new_mode
 
     def update(self):
         self.get().update()
@@ -41,15 +37,16 @@ class Renderer:
 
         self.ui = UI(game)
         self.fade = FadeOut((0, 0, 0), game.assets.configs.ui_fadeout_s)
-    
-    def get_dt(self):
-        return self.dt
+
+    @property
+    def ui_mode(self):
+        return self.ui.mode
     
     def get_ui(self):
         return self.ui.get()
 
     def set_ui(self, new_mode):
-        is_faded = self.fade.update(self.get_dt())
+        is_faded = self.fade.update(self.dt)
 
         if is_faded:
             self.ui.set_mode(new_mode)
@@ -68,7 +65,6 @@ class Renderer:
 
         self.ui.update()
         self.ui.render()
-        print(self.ui)
 
         if fullscreen:
             window.blit(pygame.transform.scale(display, monitor_size), (0, 0))

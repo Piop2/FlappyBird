@@ -33,16 +33,15 @@ class Animation:
         self.frame = 0
 
     @property
-    def image(self):
-        return self.ani_data[self.layer]["image"]
-
-    @property
     def speed(self):
         return self._speed
 
     @speed.setter
     def speed(self, new_speed):
         self._speed = float(new_speed)
+
+    def get(self):
+        return self.ani_data[self.layer]["image"]
 
     def update(self, dt):
         self.frame += dt / 1000 * self.speed
@@ -54,4 +53,4 @@ class Animation:
                 self.layer += 1
 
     def render(self, surf, pos):
-        surf.blit(self.image, pos)
+        surf.blit(self.get(), pos)
