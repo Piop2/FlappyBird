@@ -2,6 +2,7 @@ from scripts.ui.basic_ui import UI
 
 from scripts.effect.vfx import FadeIn
 
+
 class GameUI(UI):
     def __init__(self, game):
         super().__init__(game)
@@ -20,18 +21,27 @@ class GameUI(UI):
     def init_ui(self):
         self.ground_x = 0
         self.fade.init_alpha()
+        self.bird.image.speed = self.game.assets.configs.game_ready_ani_speed
+        self.bird.image.play()
+
+        self.game.world.init_world()
 
     def update(self):
         dt = self.game.renderer.dt
+        world = self.game.world
+
+        if world.mode == "ready" and self.game.input.jump:
+            self.bird.image.speed = self.game.assets.configs.game_start_ani_speed
 
         if self.game.world.gameover:
             is_faded = self.fade.update(dt)
+            self.bird.image.pause()
         else:
-            self.bird.update()
-
             self.ground_x -= self.ground_speed * dt
             if self.ground_x <= - self.ground.get_width():
                 self.ground_x = 0
+
+        self.bird.update()
 
     def render(self):
         display = self.game.window.display
