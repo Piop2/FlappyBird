@@ -9,20 +9,20 @@ class MenuUI(UI):
 
         self.background = game.assets.images.background
         self.ground = game.assets.images.ground
-        self.ground_x = 0
+        self.ground_x = None
         self.ground_speed = game.assets.configs.bird_speed
 
         self.bird = game.assets.images.menu_bird_ani  # animation
-        self.bird.speed = game.assets.configs.menu_bird_speed
+        self.bird.speed = game.assets.configs.menu_bird_ani_speed
 
         self.title = game.assets.images.t_flappy_bird
-        self.title_origin_y = 40
-        self.title_y = 40
-        self.title_direction = -1
+        self.title_direction = None
         self.title_go = True
-        self.title_cool_timer = 0
+        self.title_cool_timer = None
         self.title_movement = self.game.assets.configs.t_menu_movement
         self.title_speed = self.game.assets.configs.t_menu_speed
+        self.title_origin_y = 40
+        self.title_y = None
 
         self.copyright = game.assets.images.copyright
 
@@ -35,7 +35,7 @@ class MenuUI(UI):
     def init_ui(self):
         self.ground_x = 0
 
-        self.title_y = 40
+        self.title_y = self.title_origin_y + self.title_movement
         self.title_direction = -1
         self.title_go = True
         self.title_cool_timer = 0
@@ -45,24 +45,25 @@ class MenuUI(UI):
     def update(self):
         dt = self.game.renderer.dt
 
-        select = self.game.input.select
-        if select:
-            self.select = select
-
         self.bird.update(dt)
 
         self.ground_x -= self.ground_speed * dt
         if self.ground_x <= - self.ground.get_width():
             self.ground_x = 0
 
-        self.title_y += self.title_direction * self.title_speed
-        if self.title_y - self.title_origin_y >= self.title_movement:
-            self.title_y = self.title_origin_y + self.title_movement
-            self.title_go = False
-            self.title_direction *= -1
-        elif self.title_origin_y - self.title_y >= self.title_movement:
-            self.title_y = self.title_origin_y - self.title_movement
-            self.title_direction *= -1
+        if self.title_go:
+            self.title_y += self.title_direction * self.title_speed
+            if abs(self.title_y - self.title_origin_y) >= self.title_movement:
+                if self.title_direction == -1:
+                    self.title_go = False
+
+                self.title_y = self.title_origin_y + (self.title_direction * self.title_movement)
+                self.title_direction *= -1
+        else:
+            self.title_cool_timer += dt / 1000
+            if self.title_cool_timer >= self.game.assets.configs.t_menu_cool:
+                self.title_cool_timer = 0
+                self.title_go = True
 
         # button #
         if self.select == "start":

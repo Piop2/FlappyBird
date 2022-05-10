@@ -4,6 +4,12 @@ from scripts.animation import Animation
 from scripts.font import Font
 
 
+class Data:
+    def __init__(self):
+        self.player_name = "Ploppy"
+        self.best_score = 0
+
+
 class Configs:
     def __init__(self):
         configs = load_json("assets/config.json")
@@ -12,8 +18,10 @@ class Configs:
         game = configs["Game"]
 
         bird = game["Bird"]
+        self.bird_start_pos = bird["StartPos"]
         self.bird_speed = bird["Speed"]
         self.bird_jump_power = bird["JumpPower"]
+        self.bird_max_height = bird["MaxHeight"]
 
         self.gravity = game["Gravity"]
 
@@ -44,12 +52,18 @@ class Configs:
         self.t_menu_speed = menu_title["Speed"]
         self.t_menu_cool = menu_title["CoolTime"]
 
-        self.menu_bird_speed = menu_ui["Bird"]["Speed"]
+        self.menu_bird_ani_speed = menu_ui["Bird"]["AnimationSpeed"]
+
+        game_ui = ui["GameUI"]
+
+        self.game_ready_ani_speed = game_ui["Ready"]["AnimationSpeed"]
+
+        self.game_start_ani_speed = game_ui["Start"]["AnimationSpeed"]
 
         # vfx #
         vfx = configs["Vfx"]
 
-        self.ui_fadeout_s = vfx["UiFadeOutSpeed"]
+        self.ui_fadeout_s = vfx["UIFadeOutSpeed"]
         self.gameover_fadeout_s = vfx["GameOverFadeOutSpeed"]
 
         # Settings #
@@ -98,7 +112,11 @@ class Fonts:
 
 class Assets:
     def __init__(self):
+        self.data = Data()
         self.configs = Configs()
         self.images = Images()
         self.sounds = Sounds()
         self.fonts = Fonts(self)
+
+    def save_all(self):
+        return

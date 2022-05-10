@@ -28,6 +28,7 @@ class Animation:
 
     def __init__(self, ani_data):
         self.ani_data = ani_data
+        self._pause = False
         self.layer = 0
         self._speed = 1
         self.frame = 0
@@ -43,14 +44,21 @@ class Animation:
     def get(self):
         return self.ani_data[self.layer]["image"]
 
+    def pause(self):
+        self._pause = True
+
+    def play(self):
+        self._pause = False
+
     def update(self, dt):
-        self.frame += dt / 1000 * self.speed
-        if self.frame >= self.ani_data[self.layer]["d"]:
-            self.frame = 0
-            if self.layer >= len(self.ani_data) - 1:
-                self.layer = 0
-            else:
-                self.layer += 1
+        if not self._pause:
+            self.frame += dt / 1000 * self.speed
+            if self.frame >= self.ani_data[self.layer]["d"]:
+                self.frame = 0
+                if self.layer >= len(self.ani_data) - 1:
+                    self.layer = 0
+                else:
+                    self.layer += 1
 
     def render(self, surf, pos):
         surf.blit(self.get(), pos)

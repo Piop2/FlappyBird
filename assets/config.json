@@ -1,8 +1,10 @@
 {
   "Game": {
     "Bird": {
+      "StartPos":  [30, 100],
       "Speed": 0.07,
-      "JumpPower": 0.25
+      "JumpPower": 0.25,
+      "MaxHeight": -5
     },
     "Gravity": 0.015
   },
@@ -34,16 +36,24 @@
         "Title": {
           "MovementRange": 4,
           "Speed": 0.25,
-          "CoolTime": 0.2
+          "CoolTime": 0.1
         },
         "Bird": {
-          "Speed": 0.2
+          "AnimationSpeed": 0.2
+        }
+      },
+      "GameUI": {
+        "Ready": {
+          "AnimationSpeed": 0.2
+        },
+        "Start": {
+          "AnimationSpeed": 1
         }
       }
     }
   },
   "Vfx": {
-    "UiFadeOutSpeed": 0.5,
+    "UIFadeOutSpeed": 0.5,
     "GameOverFadeOutSpeed": 1
   },
   "Debug": {

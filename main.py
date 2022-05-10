@@ -13,13 +13,12 @@ class Game:
         self.window = Window(self)
         self.world = World(self)
         self.renderer = Renderer(self)
+        self.renderer.get_ui().init_ui()
         self.input = Input(self)
 
-        self.renderer.ui.set_mode("game")
-
     def update(self):
-        self.renderer.update()
         self.input.update()
+        self.renderer.update()
         self.world.update()
 
     def run(self):
