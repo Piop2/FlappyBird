@@ -4,7 +4,10 @@ class UI:
 
         self._buttons = {}
 
+        self.select = ""
+
     def init_ui(self):
+        self.select = ""
         return
 
     @property

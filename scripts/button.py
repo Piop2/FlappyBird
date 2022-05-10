@@ -18,11 +18,8 @@ class Button:
     def push_up(self):
         self.pushed = False
 
-    def is_pushed(self, mouse_pos):
-        if self.rect.collidepoint(*mouse_pos):
-            self.push_down()
-        else:
-            self.push_up()
+    def is_mouse_touched(self, mouse_pos):
+        return self.rect.collidepoint(*mouse_pos)
 
     def render(self, surf):
         if self.pushed:
