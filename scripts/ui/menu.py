@@ -28,7 +28,7 @@ class MenuUI(UI):
 
         self._buttons = {
             "start": Button(game.assets.images.b_start, (20, 160)),
-            "share": Button(game.assets.images.b_score, (84, 160))
+            "score": Button(game.assets.images.b_score, (84, 160))
         }
         self.select = ""
 
@@ -68,6 +68,8 @@ class MenuUI(UI):
         # button #
         if self.select == "start":
             self.game.renderer.set_ui("game")
+        elif self.select == "score":
+            self.select = ""
 
     def render(self):
         display = self.game.window.display

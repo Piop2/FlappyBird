@@ -25,7 +25,7 @@ class World:
         self.bird_acc = 0
 
     def update(self):
-        if self.game.renderer.ui_mode == "game":
+        if self.game.renderer.get_ui_mode() == "game":
             dt = self.game.renderer.dt
             jump = self.game.input.jump
 

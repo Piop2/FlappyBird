@@ -38,8 +38,7 @@ class Renderer:
         self.ui = UI(game)
         self.fade = FadeOut((0, 0, 0), game.assets.configs.ui_fadeout_s)
 
-    @property
-    def ui_mode(self):
+    def get_ui_mode(self):
         return self.ui.mode
     
     def get_ui(self):
