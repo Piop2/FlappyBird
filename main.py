@@ -7,8 +7,6 @@ from scripts.core.world import World
 
 class Game:
     def __init__(self):
-        self.running = True
-
         self.assets = Assets()
         self.window = Window(self)
         self.world = World(self)
@@ -22,7 +20,7 @@ class Game:
         self.world.update()
 
     def run(self):
-        while self.running:
+        while True:
             self.update()
 
 

@@ -1,4 +1,5 @@
 import pygame
+import sys
 
 
 class Input:
@@ -22,7 +23,7 @@ class Input:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                self.game.running = False
+                sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
