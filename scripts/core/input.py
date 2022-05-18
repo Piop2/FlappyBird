@@ -15,7 +15,7 @@ class Input:
         return display_mouse_pos
 
     def _get_ui_buttons(self):
-        return self.game.renderer.get_ui().buttons
+        return self.game.renderer.get_ui().get_buttons()
 
     def update(self):
         mouse_pos = self._get_mouse_pos()

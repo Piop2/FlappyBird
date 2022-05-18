@@ -2,7 +2,7 @@ class UI:
     def __init__(self, game):
         self.game = game
 
-        self._buttons = {}
+        self.buttons = {}
 
         self.select = ""
 
@@ -10,9 +10,8 @@ class UI:
         self.select = ""
         return
 
-    @property
-    def buttons(self):
-        return self._buttons
+    def get_buttons(self):
+        return self.buttons
 
     def _render_buttons(self):
         display = self.game.window.display

@@ -12,9 +12,11 @@ class GameUI(UI):
         self.ground_x = 0
         self.ground_speed = game.assets.configs.bird_speed
 
+        self.tap = game.assets.images.tap
+
         self.bird = self.game.world.bird
 
-        self._buttons = {}
+        self.buttons = {}
 
         self.fade = FadeIn((255, 255, 255), game.assets.configs.gameover_fadeout_s)
 
@@ -55,6 +57,8 @@ class GameUI(UI):
                                    display_size[1] - self.ground.get_height()))
 
         self.bird.render()
+
+        display.blit(self.tap, (0, 0))
 
         if self.game.world.gameover:
             self.fade.render(display)

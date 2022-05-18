@@ -98,6 +98,8 @@ class Images:
         self.b_start = load_image("assets/images/buttons/start.png")
         self.b_score = load_image("assets/images/buttons/score.png")
 
+        # GameUI #
+        self.tap = load_image("assets/images/tap.png")
 
 class Sounds:
     def __init__(self):

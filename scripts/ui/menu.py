@@ -26,7 +26,7 @@ class MenuUI(UI):
 
         self.copyright = game.assets.images.copyright
 
-        self._buttons = {
+        self.buttons = {
             "start": Button(game.assets.images.b_start, (20, 160)),
             "score": Button(game.assets.images.b_score, (84, 160))
         }
