@@ -58,7 +58,8 @@ class GameUI(UI):
 
         self.bird.render()
 
-        display.blit(self.tap, (0, 0))
+        if self.game.world.mode == "ready":
+            display.blit(self.tap, (0, 0))
 
         if self.game.world.gameover:
             self.fade.render(display)

@@ -87,7 +87,7 @@ class Images:
         self.menu_bird_ani = Animation.load("assets/images/bird")
 
         self.top_pipe = load_image("assets/images/pipes/top.png")
-        self.ground_pipe = load_image("assets/images/pipes/ground.png")
+        self.bottom_pipe = load_image("assets/images/pipes/bottom.png")
 
         self.background = load_image("assets/images/background.png")
         self.ground = load_image("assets/images/ground.png")
