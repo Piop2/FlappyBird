@@ -60,6 +60,9 @@ class Configs:
 
         self.game_start_ani_speed = game_ui["Start"]["AnimationSpeed"]
 
+        tap = game_ui["Tap"]
+        self.tap_breath_speed = tap["BreathSpeed"]
+
         # vfx #
         vfx = configs["Vfx"]
 

@@ -48,7 +48,8 @@
         },
         "Start": {
           "AnimationSpeed": 1
-        }
+        },
+        "Tap": {"BreathSpeed": 4}
       }
     }
   },

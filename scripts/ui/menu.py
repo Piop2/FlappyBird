@@ -9,20 +9,20 @@ class MenuUI(UI):
 
         self.background = game.assets.images.background
         self.ground = game.assets.images.ground
-        self.ground_x = None
+        self.ground_x = 0
         self.ground_speed = game.assets.configs.bird_speed
 
         self.bird = game.assets.images.menu_bird_ani  # animation
         self.bird.speed = game.assets.configs.menu_bird_ani_speed
 
         self.title = game.assets.images.t_flappy_bird
-        self.title_direction = None
+        self.title_direction = -1
         self.title_go = True
-        self.title_cool_timer = None
+        self.title_cool_timer = 0
         self.title_movement = self.game.assets.configs.t_menu_movement
         self.title_speed = self.game.assets.configs.t_menu_speed
         self.title_origin_y = 40
-        self.title_y = None
+        self.title_y = self.title_origin_y + self.title_movement
 
         self.copyright = game.assets.images.copyright
 

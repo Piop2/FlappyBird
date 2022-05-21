@@ -13,6 +13,10 @@ class GameUI(UI):
         self.ground_speed = game.assets.configs.bird_speed
 
         self.tap = game.assets.images.tap
+        self.tap_y = 80
+        self.tap_alpha = 0
+        self.tap_breath_direction = 1
+        self.tap_breath_speed = 4
 
         self.bird = self.game.world.bird
 
@@ -32,8 +36,13 @@ class GameUI(UI):
         dt = self.game.renderer.dt
         world = self.game.world
 
-        if world.mode == "ready" and self.game.input.jump:
-            self.bird.image.speed = self.game.assets.configs.game_start_ani_speed
+        if world.mode == "ready":
+            if self.game.input.jump:
+                self.bird.image.speed = self.game.assets.configs.game_start_ani_speed
+
+            self.tap_alpha += self.tap_breath_direction * self.tap_breath_speed
+            if self.tap_alpha <= 0 or self.tap_alpha >= 255:
+                self.tap_breath_direction *= -1
 
         if self.game.world.gameover:
             is_faded = self.fade.update(dt)
@@ -59,7 +68,8 @@ class GameUI(UI):
         self.bird.render()
 
         if self.game.world.mode == "ready":
-            display.blit(self.tap, (0, 0))
+            self.tap.set_alpha(self.tap_alpha)
+            display.blit(self.tap, ((display_size[0] / 2) - (self.tap.get_width() / 2), self.tap_y))
 
         if self.game.world.gameover:
             self.fade.render(display)
