@@ -13,7 +13,7 @@ class GameUI(UI):
         self.ground_speed = game.assets.configs.bird_speed
 
         self.tap = game.assets.images.tap
-        self.tap_y = 80
+        self.tap_y = 85
         self.tap_alpha = 0
         self.tap_breath_direction = 1
         self.tap_breath_speed = 4
