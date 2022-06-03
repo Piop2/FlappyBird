@@ -1,1 +1,6 @@
-*__pychache__
+/.idea
+/build
+/dist
+/EXE
+/__pycache__
+/Flappy_Bird.spec
